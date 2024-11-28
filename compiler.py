@@ -12,8 +12,11 @@ TK_NIL        = '#Nil'
 class Token:
     """A Token is a discrete object that is formed by matching certain source code patterns.
     
+    Note that for operator tokens such as `.`, `+`, `<=`, it's simply the string representing that
+    operator. Otherwhise, it will be one of the TK_* constants.
+    
     Attributes:
-        kind: The type of token, for operator tokens such as `.`, `+`, `<=`, it's simply the string representing that operator. Otherwhise, it will be one of the TK_* constants.
+        kind: Type of token.
         lexeme: The literal string for the token, as found in the source code.
         value: The primitive value the token represents, only applies to tokens representing literals
     """
@@ -77,6 +80,9 @@ class Scope(Statement):
     """Scope is a statement sequence with its own environment.
     
     Scopes are the basic building blocks of structured control flow.
+    
+    Attributes:
+        statements: List of statements to execute, can be empty
     """
     statements : list[Statement]
 
@@ -117,3 +123,7 @@ class Assignment(Statement):
 class ExprStatement(Statement):
     expression : Expression
 
+
+
+
+e = Binary('+', Primary(69), Primary(64))
